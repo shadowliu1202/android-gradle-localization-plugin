@@ -39,6 +39,7 @@ class ParseXLSXTest extends LocalizationPluginTestBase {
                     .withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byNameAndAllAttributes))
                     .checkForSimilar()
                     .build()
+
             assertThat(diff.hasDifferences()).as('file: %s is different than expected %s', filePath, diff.toString()).isFalse()
         }
     }

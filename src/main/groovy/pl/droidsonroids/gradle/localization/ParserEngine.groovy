@@ -65,7 +65,7 @@ class ParserEngine {
     void parseSpreadsheet() {
         mCloseableInput.withCloseable {
             Map<String, String[][]> sheets = mParser.getResult()
-            for (String sheetName: sheets.keySet()) {
+            for (String sheetName : sheets.keySet()) {
                 String[][] allCells = sheets.get(sheetName)
                 String outputFileName
                 if (sheetName != null) {
@@ -74,12 +74,12 @@ class ParserEngine {
                     outputFileName = mConfig.outputFileName
                 }
                 def header = new SourceInfo(allCells[0], mConfig, mResDir, outputFileName)
-                parseCells(header, allCells)
+                parseCells(header, allCells, sheetName)
             }
         }
     }
 
-    private parseCells(final SourceInfo sourceInfo, String[][] cells) {
+    private parseCells(final SourceInfo sourceInfo, String[][] cells, final sheetName) {
         HashMap<String, Boolean> translatableArrays = new HashMap<String, Boolean>()
         for (j in 1..sourceInfo.mBuilders.length - 1) {
             def builder = sourceInfo.mBuilders[j]
@@ -125,6 +125,12 @@ class ParserEngine {
                     } else {
                         resourceType = ResourceType.STRING
                         indexValue = null
+                    }
+                    if (name.isInteger()) {
+                        String appendName = String.format("%03d", name.toInteger())
+                        name = sheetName + "_" + appendName
+                    } else {
+                        name = sheetName + "_" + name.toLowerCase()
                     }
 
                     def translatable = true
@@ -179,9 +185,15 @@ class ParserEngine {
                         value = '"' + value + '"'
                     if (mConfig.convertTripleDotsToHorizontalEllipsis)
                         value = value.replace("...", "…")
+                    if (mConfig.convertBraceToStringFormat) {
+                        value = value.replaceAll("\\{\\w+\\}", "%s")
+                    }
                     value = value.replace("?", "\\?")
+                    value = value.replace("<br />", "\\n")
+                    value = value.replace("<br/>", "\\n")
                     if (mConfig.normalizationForm)
                         value = Normalizer.normalize(value, mConfig.normalizationForm)
+
 
                     if (resourceType == PLURAL || resourceType == ARRAY) {
                         //TODO require only one translatable value for all list?

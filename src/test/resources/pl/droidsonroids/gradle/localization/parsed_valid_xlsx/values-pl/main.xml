@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="file">Plik</string><!-- file label -->
-    <string name="empty"></string>
-    <plurals name="cow">
+    <string name="main_file">Plik</string><!-- file label -->
+    <string name="main_empty"></string>
+    <plurals name="main_cow">
         <item quantity="other">krowy</item><!-- comment -->
         <item quantity="one">krowa</item>
     </plurals>

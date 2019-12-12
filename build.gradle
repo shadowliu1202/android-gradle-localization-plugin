@@ -19,6 +19,7 @@ apply from: 'mvn-push.gradle'
 
 repositories {
     mavenCentral()
+    mavenLocal()
     jcenter()
 }
 
@@ -55,7 +56,7 @@ pluginBundle {
 gradlePlugin {
     plugins {
         localization {
-            id = 'pl.droidsonroids.localization'
+            id = 'shadowtest.droidsonroids.localization'
             implementationClass = 'pl.droidsonroids.gradle.localization.LocalizationPlugin'
         }
     }

@@ -17,7 +17,7 @@ class XLSXParser implements Parser {
         if (useAllSheets) {
             mAllSheets = new HashMap<>(workbook.numberOfSheets)
             for (Sheet sheet : workbook.sheetIterator()) {
-                mAllSheets.put(sheet.getSheetName(), getAllValues(sheet))
+                mAllSheets.put(sheet.getSheetName().toLowerCase(), getAllValues(sheet))
             }
         } else {
             mAllSheets = new HashMap<>(1)

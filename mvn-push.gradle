@@ -4,11 +4,8 @@ uploadArchives {
             beforeDeployment {
                 MavenDeployment deployment -> signing.signPom(deployment)
             }
-
-            repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
-            }
-            snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
+            def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+            repository(url: localMavenRepo) {
                 authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
             }
 
