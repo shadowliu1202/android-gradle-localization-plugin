@@ -54,7 +54,7 @@ class SourceInfo {
         reservedColumns.addAll(config.ignorableColumns)
 
         header.eachWithIndex { columnName, i ->
-            if (!(columnName in reservedColumns) && i != mNameIdx) {
+            if (!(columnName in reservedColumns) && i != mNameIdx && !columnName.isEmpty()) {
                 mBuilders[i] = new XMLBuilder(columnName, config, resDir, outputFileName)
             }
         }

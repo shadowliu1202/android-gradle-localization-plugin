@@ -4,6 +4,7 @@
     <string name="main_file">File</string><!-- file label -->
     <string name="main_percent" translatable="false" formatted="false">%d %s</string>
     <string name="main_empty"></string>
+    <string name="main_test">有個99%%</string>
     <plurals name="main_cow">
         <item quantity="other">cows</item><!-- comment -->
         <item quantity="one">cow</item>

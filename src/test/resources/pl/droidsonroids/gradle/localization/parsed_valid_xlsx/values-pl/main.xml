@@ -2,6 +2,7 @@
 <resources>
     <string name="main_file">Plik</string><!-- file label -->
     <string name="main_empty"></string>
+    <string name="main_test"></string>
     <plurals name="main_cow">
         <item quantity="other">krowy</item><!-- comment -->
         <item quantity="one">krowa</item>

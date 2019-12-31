@@ -12,6 +12,20 @@ import static org.assertj.core.api.Assertions.assertThat
 class ParseXLSXTest extends LocalizationPluginTestBase {
 
     @Test
+    void testParsePercent() {
+        def value = "有個99%d"
+        def format = "%(?![ds])"
+        value = value.replaceAll(format, "%%")
+        assertThat(value).isEqualTo("有個99%d")
+        value = "有個99%s"
+        value = value.replaceAll(format, "%%")
+        assertThat(value).isEqualTo("有個99%s")
+        value = "有個99%"
+        value = value.replaceAll(format, "%%")
+        assertThat(value).isEqualTo("有個99%%")
+    }
+
+    @Test
     void testXlsxFile() {
         def name = 'valid.xlsx'
 

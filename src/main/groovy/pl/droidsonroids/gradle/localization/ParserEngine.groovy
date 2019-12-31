@@ -175,6 +175,8 @@ class ParserEngine {
 
                     if (mConfig.escapeSlashes)
                         value = value.replace("\\", "\\\\")
+                    if (mConfig.convertPercentToStringFormat)
+                        value = value.replaceAll("%(?![ds])", "%%")
                     if (mConfig.escapeApostrophes)
                         value = value.replace("'", "\\'")
                     if (mConfig.escapeQuotes && (strategy == ALWAYS || (strategy == IF_TAGS_ABSENT && !Utils.containsHTML(value))))

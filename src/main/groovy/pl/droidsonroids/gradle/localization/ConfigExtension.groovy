@@ -18,6 +18,7 @@ class ConfigExtension {
     boolean convertTripleDotsToHorizontalEllipsis = true
     boolean escapeSlashes = true
     boolean useAllSheets = false
+    boolean convertPercentToStringFormat = true
     boolean convertBraceToStringFormat = true
     TagEscapingStrategy tagEscapingStrategy = TagEscapingStrategy.IF_TAGS_ABSENT
     Normalizer.Form normalizationForm = Normalizer.Form.NFC
@@ -42,4 +43,5 @@ class ConfigExtension {
     boolean skipInvalidName
     boolean skipDuplicatedName
     String defaultLocaleQualifier
+    List<String> ignorableQualifier = []
 }
